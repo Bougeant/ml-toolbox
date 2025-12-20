@@ -22,6 +22,7 @@ jupyter:
 
 ```python
 import pandas as pd
+import numpy as np
 from sklearn.datasets import fetch_openml
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -63,7 +64,7 @@ plot_classification_features_distribution(df, features=X.columns, target="Outcom
 ## Train binary classification model
 
 ```python
-rf = RandomForestClassifier(n_estimators=20, max_depth=4, min_samples_leaf=5)
+rf = RandomForestClassifier(n_estimators=20, max_depth=3, min_samples_leaf=5)
 ```
 
 ```python
@@ -119,6 +120,10 @@ plot_classification_predictions(y, y_prob["Cross-Validation"], class_names, deci
 ## Feature importance
 
 ```python
+plot_feature_importance(rf, X, max_nb=20)
+```
+
+```python
 plot_feature_importance(rf, X, y, scoring="roc_auc", importance_type="removal", max_nb=20)
 ```
 
@@ -140,6 +145,8 @@ plot_learning_curves(rf, X, y, scoring="roc_auc")
 plot_partial_dependence(rf, X, class_names=class_names)
 ```
 
-```python
+## Shapley waterfall plot
 
+```python
+plot_waterfall(rf, X.iloc[[0]])
 ```
