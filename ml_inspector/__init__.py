@@ -11,6 +11,7 @@ from .partial_dependence import plot_partial_dependence
 from .precision_recall_curves import plot_precision_recall_curves
 from .predictions import plot_classification_predictions
 from .roc_curves import plot_roc_curves
+from .shapley import plot_waterfall
 
 __all__ = [
     "plot_calibration_curves",
@@ -24,4 +25,5 @@ __all__ = [
     "plot_feature_importance",
     "plot_classification_features_distribution",
     "plot_regression_features_distribution",
+    "plot_waterfall",
 ]
