@@ -187,6 +187,10 @@ def discrete_feature(df, column, target, class_names=None, max_cat=12, visible=T
     if not class_names:
         class_names = {c: str(c) for c in classes}
     data = []
+    if df[column].dtype == pd.Int64Dtype():
+        df[column] = df[column].astype("int64")
+    if df[column].dtype == pd.Float64Dtype():
+        df[column] = df[column].astype("float64")
     df[column] = df[column].fillna("Missing")
     order = df[column].value_counts().index[:max_cat]
     for i, cl in enumerate(classes):
@@ -314,17 +318,26 @@ def feature_layout(column):
 
 
 def add_feature_selection_button(fig, X, offset):
-    buttons = [
-        {
-            "args": [
-                {"visible": [c == col for c in X.columns for _ in range(offset)]},
-                {"xaxis.title.text": col, "xaxis2.title.text": col},
-            ],
-            "label": col,
-            "method": "update",
-        }
-        for col in X.columns
-    ]
+    buttons = []
+    for col in X.columns:
+        xaxis_type = "linear"
+        if not is_numeric_dtype(X[col]):
+            xaxis_type = "category"
+        buttons.append(
+            {
+                "args": [
+                    {"visible": [c == col for c in X.columns for _ in range(offset)]},
+                    {
+                        "xaxis.title.text": col,
+                        "xaxis.type": xaxis_type,
+                        "xaxis2.title.text": col,
+                        "xaxis2.type": xaxis_type,
+                    },
+                ],
+                "label": col,
+                "method": "update",
+            }
+        )
     fig.update_layout(
         updatemenus=[
             dict(
