@@ -17,6 +17,7 @@ dependencies = [
     "seaborn",
     "tqdm",
     "statsmodels",
+    "shap",
 ]
 
 
