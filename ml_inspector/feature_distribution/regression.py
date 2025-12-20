@@ -114,9 +114,9 @@ def continuous_feature_average(df, column, target, bins, ci, visible):
     :returns list:
         A list of plots or the average target value and its condifence interval.
     """
-    aggregates = df.groupby(pd.qcut(df[column], q=bins, duplicates="drop"))[target].agg(
-        ["mean", "std", "count"]
-    )
+    aggregates = df.groupby(
+        pd.qcut(df[column], q=bins, duplicates="drop"), observed=True
+    )[target].agg(["mean", "std", "count"])
     z = st.norm.ppf(ci)
     avg = pd.Series([val for val in aggregates["mean"] for _ in (0, 1)])
     error = pd.Series(
