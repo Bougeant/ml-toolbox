@@ -352,4 +352,29 @@ def add_feature_selection_button(fig, X, offset):
             ),
         ]
     )
+    scale_menu = dict(
+        buttons=[
+            {
+                "label": "Linear x-axis",
+                "method": "relayout",
+                "args": [{"xaxis.type": "linear", "xaxis2.type": "linear"}],
+            },
+            {
+                "label": "Log x-axis",
+                "method": "relayout",
+                "args": [{"xaxis.type": "log", "xaxis2.type": "log"}],
+            },
+        ],
+        type="buttons",
+        direction="right",
+        pad={"r": 10, "t": 10},
+        showactive=True,
+        active=0,
+        x=0.25,
+        xanchor="left",
+        y=1.3,
+        yanchor="top",
+    )
+    existing_menus = list(fig.layout.updatemenus) if fig.layout.updatemenus else []
+    fig.update_layout(updatemenus=existing_menus + [scale_menu])
     return fig
