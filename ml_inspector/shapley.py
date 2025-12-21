@@ -91,8 +91,8 @@ class ShapleyExplainer:
         return shap_values
 
     def calculate_single_shap_value(self, X, class_index):
-        """Uses a sklearn.Pipeline to transform the input DataFrame. Then applies this to
-        the given shap.Explainer and returns the shap values.
+        """Uses a sklearn.Pipeline to transform the input DataFrame. Then applies this
+        to the given shap.Explainer and returns the shap values.
 
         :param shap.Explainer explainer:
             The previously trained explainer.
@@ -136,8 +136,8 @@ class ShapleyExplainer:
         return feature_name_value
 
     def _create_plotly_waterfall_plot(self, shap_value, max_display, x_title):
-        """Creates the plotly figure for the given shap values and the number of features
-        to display.
+        """Creates the plotly figure for the given shap values and the number of
+        features to display.
 
         :param shap._explanation.Explanation shap_value:
             The shap explanation object.
@@ -204,7 +204,8 @@ class ShapleyExplainer:
         return fig
 
     def _create_plotly_waterfall_data(self, shap_dict, texttemplate):
-        """Creates the data object for a plotly waterfall plot using the input dictionary.
+        """Creates the data object for a plotly waterfall plot using the input
+        dictionary.
 
         :param dict shap_dict:
             The dictionary of processed shap values and features.
@@ -232,8 +233,8 @@ class ShapleyExplainer:
         return data
 
     def _process_shap_value_plotly(self, shap_value, max_display):
-        """Change feature names to include their value. Order both by the magnitue of the
-        value. Restrict the number of entries if max_display.
+        """Change feature names to include their value. Order both by the magnitue of
+        the value. Restrict the number of entries if max_display.
 
         :param shap._explanation.Explanation shap_value:
             The shap explanation object.
@@ -263,8 +264,9 @@ class ShapleyExplainer:
         return shap_dict
 
     def _generate_shap_dict(self, shap_value):
-        """Generates a dictionary containing the required components contained within the
-        Explanation object. Values are sorted based on the magnitude of their effect.
+        """Generates a dictionary containing the required components contained within
+        the Explanation object. Values are sorted based on the magnitude of their
+        effect.
 
         :param shap._explanation.Explanation shap_value:
             The shap explanation object.
